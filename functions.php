@@ -15,9 +15,9 @@ function kdk_reg_widgets()
 {
     // Define widget areas
     $widgetAreas = array(
-        'KDK Minimal - Top'     => 'kdk_top',
-        'KDK Minimal - Sidebar Top' => 'kdk_sidebar_top',
-        'KDK Minimal - Sidebar Bottom'   => 'kdk_sidebar_bottom'
+        'KDK Minimal - Top'            => 'kdk_top',
+        'KDK Minimal - Sidebar Top'    => 'kdk_sidebar_top',
+        'KDK Minimal - Sidebar Bottom' => 'kdk_sidebar_bottom'
     );
 
     // Register each widget area
