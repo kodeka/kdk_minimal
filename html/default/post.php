@@ -26,6 +26,15 @@
         <?php echo get_post_meta($post->ID, KDK_ID.'_key', true); ?>
     </p>
 
+    <?php else: ?>
+
+    <!-- Excerpt view -->
+    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+        <?php the_title(); ?>
+    </a>
+
+    <?php the_excerpt(); ?>
+
     <?php endif; ?>
 </article>
 <?php endwhile; ?>

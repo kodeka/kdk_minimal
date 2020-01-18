@@ -15,6 +15,7 @@ function kdk_reg_widgets()
 {
     // Define widget areas
     $widgetAreas = array(
+        'KDK Minimal - Menu'           => 'kdk_menu',
         'KDK Minimal - Top'            => 'kdk_top',
         'KDK Minimal - Sidebar Top'    => 'kdk_sidebar_top',
         'KDK Minimal - Sidebar Bottom' => 'kdk_sidebar_bottom'
@@ -49,7 +50,10 @@ function kdk_widgets($id)
 
 
 
-// Body class
+/**
+ * Theme setup
+ */
+
 function kdk_minimal_body_classes($classes)
 {
     // Adds a class of group-blog to blogs with more than 1 published author.
@@ -72,59 +76,27 @@ function kdk_minimal_body_classes($classes)
 add_filter('body_class', 'kdk_minimal_body_classes');
 
 if (!function_exists('kdk_minimal_setup')) {
-    /**
-     * Sets up theme defaults and registers support for various WordPress features.
-     *
-     * Note that this function is hooked into the after_setup_theme hook, which
-     * runs before the init hook. The init hook is too late for some features, such
-     * as indicating support for post thumbnails.
-     */
+    // Sets up theme defaults and registers support for various WordPress features
     function kdk_minimal_setup()
     {
-
-    /*
-     * Make theme available for translation.
-     * Translations can be filed in the /languages/ directory.
-     * If you're building a theme based on kdk_minimal, use a find and replace
-     * to change 'kdk_minimal' to the name of your theme in all the template files
-     */
+        //Make theme available for translation
         load_theme_textdomain('kdk_minimal', get_template_directory() . '/languages');
 
-        // Add default posts and comments RSS feed links to head.
+        // Add default posts and comments RSS feed links to head
         add_theme_support('automatic-feed-links');
 
-        /*
-         * Let WordPress manage the document title.
-         * By adding theme support, we declare that this theme does not use a
-         * hard-coded <title> tag in the document head, and expect WordPress to
-         * provide it for us.
-         */
+        // Let WordPress manage the document title
         add_theme_support('title-tag');
 
-        /*
-         * Enable support for Post Thumbnails on posts and pages.
-         *
-         * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-         */
+        // Enable support for Post Thumbnails on posts and pages.
         add_theme_support('post-thumbnails');
 
-        // This theme uses wp_nav_menu() in one location.
-        register_nav_menus(array(
-            'primary' => __('Primary Menu', 'kdk_minimal'),
-        ));
-
-        /*
-         * Switch default core markup for search form, comment form, and comments
-         * to output valid HTML5.
-         */
+        // Switch default core markup for search form, comment form, and comments to output valid HTML5
         add_theme_support('html5', array(
             'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
         ));
 
-        /*
-         * Enable support for Post Formats.
-         * See http://codex.wordpress.org/Post_Formats
-         */
+        // Enable support for Post Formats
         add_theme_support('post-formats', array(
             'aside', 'image', 'video', 'quote', 'link',
         ));
@@ -132,9 +104,12 @@ if (!function_exists('kdk_minimal_setup')) {
 }
 add_action('after_setup_theme', 'kdk_minimal_setup');
 
+
+
 /**
- * Enqueue scripts and styles.
+ * Enqueue scripts and styles
  */
+
 function kdk_minimal_scripts()
 {
     wp_enqueue_style('kdk_minimal-style', get_stylesheet_uri());
@@ -160,7 +135,10 @@ add_filter('show_admin_bar', '__return_false');
 
 
 
-// === Custom Fields (WIP) ===
+/**
+ * Custom Fields (WIP)
+ */
+
 function KDK_MetaBox($name, $id)
 {
     define('KDK_ID', 'kdk_media');

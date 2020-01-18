@@ -26,7 +26,7 @@
                 </div>
 
                 <nav>
-                    <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+                    <?php kdk_widgets('kdk_menu'); ?>
                 </nav>
 
                 <!-- Widget position "kdk_top" -->

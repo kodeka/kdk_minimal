@@ -12,7 +12,7 @@ body {padding:0;margin:0;font-size:16px;background:#eee;}
 /* Sections */
 #container {background:#fff;padding:20px;margin:20px auto;width:1200px;}
 header {padding:10px;}
-    nav {padding:10px;background:#f8f8f8;}
+    nav {background:#f8f8f8;}
 #content {display:grid;grid-gap:10px;}
     .is-frontpage #content {grid-template-columns:4fr 1fr;}
     main {padding:10px;margin:0;}
