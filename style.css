@@ -1,12 +1,12 @@
 /*
-Theme Name: kdk_minimal
-Theme URI: http://kodeka.io/
+Theme Name: KDK Minimal
+Theme URI: https://kodeka.io
 Author: Kodeka
-Author URI: http://kodeka.io/
-Description: A minimal WP template
+Author URI: https://kodeka.io
+Description: A minimal WP template by Kodeka
 Version: 1.0.0
 License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl.html
 Text Domain: kdk_minimal
 Tags:
 
@@ -15,8 +15,8 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 */
 
-html {}
-body {padding:0;margin:0;font-size:14px;}
+html {background:#eee;}
+body {padding:20px;margin:20px auto;font-size:16px;width:1200px;background:#fff;}
 
-header {background:#fafafa;padding:8px;}
-.kdkWidgetArea {background:#d0f3ff;padding:8px;margin:4px 0;}
+header {background:#c3f0fb;padding:8px;}
+.kdkWidgetArea {background:#efefef;padding:8px;margin:4px 0;}
