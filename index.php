@@ -36,22 +36,8 @@
 
             <div id="content">
                 <main>
-                <!-- The body -->
-                <?php
-                    if (have_posts()) {
-                        if (is_front_page()) {
-                            require get_template_directory().'/html/default/index.php';
-                        } elseif (is_category()) {
-                            require get_template_directory().'/html/default/category.php';
-                        } elseif (is_tag()) {
-                            require get_template_directory().'/html/default/tag.php';
-                        } elseif (get_post_type()) {
-                            require get_template_directory().'/html/default/'.get_post_type().'.php';
-                        } else {
-                            echo 'No content found';
-                        }
-                    }
-                ?>
+                    <!-- The body -->
+                    <?php kdk_body() ?>
                 </main>
     
                 <?php if(is_front_page()): ?>
