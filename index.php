@@ -31,39 +31,40 @@
         </header>
 
         <!-- The body -->
-        <?php if(have_posts()): ?>
-        <section>
-            <div class="page-header">
-                <?php
-                    the_archive_title( '<h1 class="page-title">', '</h1>' );
-                    the_archive_description( '<div class="taxonomy-description">', '</div>' );
-                ?>
-            </div>
+        <?php
+            //var_dump(get_post_type());
+            //var_dump(is_category());
 
-            <?php
-                while(have_posts()) {
-                    the_post();
-                    if(is_category()) {
-                        require get_template_directory().'/html/default/category.php';
-                    } else {
-                        require get_template_directory().'/html/default/'.get_post_type().'.php';        
-                    }
+            if (have_posts()) {
+                //ob_start();
+                if (is_front_page()) {
+                    require get_template_directory().'/html/default/index.php';
+                } elseif (is_category()) {
+                    require get_template_directory().'/html/default/category.php';
+                } elseif (is_tag()) {
+                    require get_template_directory().'/html/default/tag.php';
+                } elseif (get_post_type()) {
+                    require get_template_directory().'/html/default/'.get_post_type().'.php';
+                } else {
+                    echo 'No content found';
                 }
-            ?>
-            
-            <?php the_posts_navigation(); ?>
-        </section>
-        <?php endif; ?>
+                //$output = ob_get_contents();
+                //ob_end_clean();
+                //echo $output;
+            }
+        ?>
 
         <?php if(is_front_page()): ?>
         <!-- Show the following only on the site's frontpage -->
-        <?php //get_sidebar(); ?>
-
-        <!-- Widget position "kdk_sidebar" -->
-        <?php kdk_widgets('kdk_sidebar'); ?>
-
-        <!-- Widget position "kdk_right" -->
-        <?php kdk_widgets('kdk_right'); ?>
+        <aside>
+            <?php //get_sidebar(); ?>
+    
+            <!-- Widget position "kdk_sidebar" -->
+            <?php kdk_widgets('kdk_sidebar'); ?>
+    
+            <!-- Widget position "kdk_right" -->
+            <?php kdk_widgets('kdk_right'); ?>
+        </aside>
         <?php endif; ?>
 
         <!-- The footer -->

@@ -141,7 +141,7 @@ remove_action('wp_print_styles', 'print_emoji_styles');
 // Hide the admin bar
 add_filter('show_admin_bar', '__return_false');
 
-// Custom Fields (WIP)
+// === Custom Fields (WIP) ===
 function KDK_MetaBox($name, $id)
 {
     define('KDK_ID', 'kdk_media');
