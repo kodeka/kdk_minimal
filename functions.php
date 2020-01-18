@@ -49,11 +49,7 @@ if (!function_exists('kdk_widgets')) {
     function kdk_widgets($id)
     {
         if (is_active_sidebar($id)) {
-            ?>
-        <div class="kdkWidgetArea">
-            <?php dynamic_sidebar($id); ?>
-        </div>
-        <?php
+            echo '<div class="kdkWidgetArea">'.dynamic_sidebar($id).'</div>';
         }
     }
 }
@@ -97,24 +93,24 @@ if (!function_exists('kdk_minimal_setup')) {
 
         // This theme uses wp_nav_menu() in one location.
         register_nav_menus(array(
-        'primary' => __('Primary Menu', 'kdk_minimal'),
-    ));
+            'primary' => __('Primary Menu', 'kdk_minimal'),
+        ));
 
         /*
          * Switch default core markup for search form, comment form, and comments
          * to output valid HTML5.
          */
         add_theme_support('html5', array(
-        'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
-    ));
+            'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
+        ));
 
         /*
          * Enable support for Post Formats.
          * See http://codex.wordpress.org/Post_Formats
          */
         add_theme_support('post-formats', array(
-        'aside', 'image', 'video', 'quote', 'link',
-    ));
+            'aside', 'image', 'video', 'quote', 'link',
+        ));
     }
 }
 add_action('after_setup_theme', 'kdk_minimal_setup');
@@ -125,15 +121,16 @@ add_action('after_setup_theme', 'kdk_minimal_setup');
 function kdk_minimal_scripts()
 {
     wp_enqueue_style('kdk_minimal-style', get_stylesheet_uri());
-    /*
-    wp_enqueue_script( 'kdk_minimal-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
-    wp_enqueue_script( 'kdk_minimal-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+    // CSS
+    wp_enqueue_style('kdk_minimal-template', get_template_directory_uri().'/css/template.css', array(), '20200118', true);
 
-    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-        wp_enqueue_script( 'comment-reply' );
+    // JS
+    wp_enqueue_script('kdk_minimal-behaviour', get_template_directory_uri().'/js/behaviour.js', array(), '20200118', true);
+
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
     }
-    */
 }
 add_action('wp_enqueue_scripts', 'kdk_minimal_scripts');
 
@@ -149,12 +146,12 @@ function KDK_MetaBox($name, $id)
     function kdk_add_meta_box()
     {
         add_meta_box(
-            KDK_ID, // $id
-            KDK_NAME, // $title
+            KDK_ID,            // $id
+            KDK_NAME,          // $title
             'kdk_meta_box_cb', // $callback
-            'post', // $page
-            'normal', // $context
-            'high' // $priority
+            'post',            // $page
+            'normal',          // $context
+            'high'             // $priority
         );
     }
     function kdk_meta_box_cb($post)
