@@ -123,16 +123,20 @@ function kdk_minimal_scripts()
     wp_enqueue_style('kdk_minimal-style', get_stylesheet_uri());
 
     // CSS
-    wp_enqueue_style('kdk_minimal-template', get_template_directory_uri().'/css/template.css', array(), '20200118', true);
+    wp_enqueue_style('kdk_minimal-template', get_template_directory_uri().'/css/template.css', array(), '20200118');
 
     // JS
-    wp_enqueue_script('kdk_minimal-behaviour', get_template_directory_uri().'/js/behaviour.js', array(), '20200118', true);
+    wp_enqueue_script('kdk_minimal-behaviour', get_template_directory_uri().'/js/behaviour.js', array(), '20200118');
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
 }
 add_action('wp_enqueue_scripts', 'kdk_minimal_scripts');
+
+// Remove Emoji Support
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
 
 // Hide the admin bar
 add_filter('show_admin_bar', '__return_false');
