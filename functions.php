@@ -7,6 +7,48 @@
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
+/**
+ * Register widget areas
+ */
+
+function kdk_reg_widgets()
+{
+    // Define widget areas
+    $widgetAreas = array(
+        'KDK Sidebar' => 'kdk_sidebar',
+        'KDK Top'     => 'kdk_top',
+        'KDK Right'   => 'kdk_right'
+    );
+
+    // Register each widget area
+    foreach ($widgetAreas as $name => $id) {
+        register_sidebar(array(
+            'name'          => esc_html__($name, 'kdk_minimal'),
+            'id'            => $id,
+            'description'   => esc_html__('Add widgets here.', 'kdk_minimal'),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        ));
+    }
+}
+add_action('widgets_init', 'kdk_reg_widgets');
+
+// Helper to render widget areas
+function kdk_widgets($id)
+{
+    if (is_active_sidebar($id)) {
+        ?>
+        <div class="kdkWidgetArea">
+            <?php dynamic_sidebar($id); ?>
+        </div>
+        <?php
+    }
+}
+
+
+
 // Body class
 function kdk_minimal_body_classes($classes)
 {
@@ -14,45 +56,20 @@ function kdk_minimal_body_classes($classes)
     if (is_multi_author()) {
         $classes[] = 'group-blog';
     }
+
+    if (is_front_page()) {
+        $classes[] = 'is-frontpage';
+    } elseif (is_category()) {
+        $classes[] = 'is-category';
+    } elseif (is_tag()) {
+        $classes[] = 'is-tag';
+    } elseif (get_post_type()) {
+        $classes[] = 'is-'.strtolower(get_post_type());
+    }
+
     return $classes;
 }
 add_filter('body_class', 'kdk_minimal_body_classes');
-
-/**
- * Register widget areas
- *
- * @link http://codex.wordpress.org/Function_Reference/register_sidebar
- */
-if (!function_exists('kdk_reg_widget_area')) {
-    function kdk_reg_widget_area($name, $id)
-    {
-        register_sidebar(array(
-            'name'          => $name,
-            'id'            => $id,
-            'description'   => '',
-            'before_widget' => '<div id="%1$s" class="widget %2$s">',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h2 class="widget-title">',
-            'after_title'   => '</h2>',
-        ));
-    }
-}
-function kdk_minimal_widgets_init()
-{
-    kdk_reg_widget_area('KDK Sidebar', 'kdk_sidebar');
-    kdk_reg_widget_area('KDK Top', 'kdk_top');
-    kdk_reg_widget_area('KDK Right', 'kdk_right');
-}
-add_action('widgets_init', 'kdk_minimal_widgets_init');
-
-if (!function_exists('kdk_widgets')) {
-    function kdk_widgets($id)
-    {
-        if (is_active_sidebar($id)) {
-            echo '<div class="kdkWidgetArea">'.dynamic_sidebar($id).'</div>';
-        }
-    }
-}
 
 if (!function_exists('kdk_minimal_setup')) {
     /**
@@ -140,6 +157,8 @@ remove_action('wp_print_styles', 'print_emoji_styles');
 
 // Hide the admin bar
 add_filter('show_admin_bar', '__return_false');
+
+
 
 // === Custom Fields (WIP) ===
 function KDK_MetaBox($name, $id)

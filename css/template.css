@@ -6,9 +6,18 @@
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
-html {background:#eee;}
-body {padding:20px;margin:20px auto;font-size:16px;width:1200px;background:#fff;}
+html {}
+body {padding:0;margin:0;font-size:16px;background:#eee;}
 
-header {background:#c3f0fb;padding:8px;}
-aside {background:#efefef;padding:10px;margin:10px auto;}
-.kdkWidgetArea {}
+/* Sections */
+#container {background:#fff;padding:20px;margin:20px auto;width:1200px;}
+header {padding:10px;}
+    nav {padding:10px;background:#f8f8f8;}
+#content {display:grid;grid-gap:10px;}
+    .is-frontpage #content {grid-template-columns:4fr 1fr;}
+    main {padding:10px;margin:0;}
+    aside {padding:10px;margin:0;}
+footer {padding:10px;background:#f8f8f8;}
+
+/* Widgets */
+.kdkWidgetArea {border:1px dotted #ccc;padding:10px;margin:10px 0;}

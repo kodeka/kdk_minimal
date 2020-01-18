@@ -17,57 +17,58 @@
         <?php wp_head(); ?>
     </head>
     <body <?php body_class(); ?>>
-        <!-- The header -->
-        <header>
-            <div>
-                <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-                <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+        <div id="container">
+            <!-- The header -->
+            <header>
+                <div>
+                    <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+                    <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+                </div>
+
+                <nav>
+                    <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+                </nav>
+
+                <!-- Widget position "kdk_top" -->
+                <?php kdk_widgets('kdk_top'); ?>
+            </header>
+
+            <div id="content">
+                <main>
+                <!-- The body -->
+                <?php
+                    if (have_posts()) {
+                        if (is_front_page()) {
+                            require get_template_directory().'/html/default/index.php';
+                        } elseif (is_category()) {
+                            require get_template_directory().'/html/default/category.php';
+                        } elseif (is_tag()) {
+                            require get_template_directory().'/html/default/tag.php';
+                        } elseif (get_post_type()) {
+                            require get_template_directory().'/html/default/'.get_post_type().'.php';
+                        } else {
+                            echo 'No content found';
+                        }
+                    }
+                ?>
+                </main>
+    
+                <?php if(is_front_page()): ?>
+                <!-- Show the following only on the site's frontpage -->
+                <aside>
+                    <!-- Widget position "kdk_sidebar" -->
+                    <?php kdk_widgets('kdk_sidebar'); ?>
+    
+                    <!-- Widget position "kdk_right" -->
+                    <?php kdk_widgets('kdk_right'); ?>
+                </aside>
+                <?php endif; ?>
             </div>
-            <nav>
-                <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-            </nav>
+        </div>
 
-            <?php kdk_widgets('kdk_top'); ?>
-        </header>
-
-        <!-- The body -->
-        <?php
-            //var_dump(get_post_type());
-            //var_dump(is_category());
-
-            if (have_posts()) {
-                //ob_start();
-                if (is_front_page()) {
-                    require get_template_directory().'/html/default/index.php';
-                } elseif (is_category()) {
-                    require get_template_directory().'/html/default/category.php';
-                } elseif (is_tag()) {
-                    require get_template_directory().'/html/default/tag.php';
-                } elseif (get_post_type()) {
-                    require get_template_directory().'/html/default/'.get_post_type().'.php';
-                } else {
-                    echo 'No content found';
-                }
-                //$output = ob_get_contents();
-                //ob_end_clean();
-                //echo $output;
-            }
-        ?>
-
-        <?php if(is_front_page()): ?>
-        <!-- Show the following only on the site's frontpage -->
-        <aside>
-            <?php //get_sidebar(); ?>
-    
-            <!-- Widget position "kdk_sidebar" -->
-            <?php kdk_widgets('kdk_sidebar'); ?>
-    
-            <!-- Widget position "kdk_right" -->
-            <?php kdk_widgets('kdk_right'); ?>
-        </aside>
-        <?php endif; ?>
-
-        <!-- The footer -->
-        <?php wp_footer(); ?>
+        <footer>
+            <!-- The footer -->
+            <?php wp_footer(); ?>
+        </footer>
     </body>
 </html>
