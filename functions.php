@@ -18,7 +18,8 @@ function kdk_reg_widgets()
         'KDK Minimal - Menu'           => 'kdk_menu',
         'KDK Minimal - Top'            => 'kdk_top',
         'KDK Minimal - Sidebar Top'    => 'kdk_sidebar_top',
-        'KDK Minimal - Sidebar Bottom' => 'kdk_sidebar_bottom'
+        'KDK Minimal - Sidebar Bottom' => 'kdk_sidebar_bottom',
+        'KDK Minimal - Footer'         => 'kdk_footer'
     );
 
     // Register each widget area
