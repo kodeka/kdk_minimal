@@ -6,6 +6,7 @@
  * @copyright  Copyright (c) 2018 - 2020 Kodeka OÜ. All rights reserved.
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

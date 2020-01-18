@@ -22,9 +22,16 @@
 
     <?php the_tags(); ?>
 
-    <p>
-        <?php echo get_post_meta($post->ID, KDK_ID.'_key', true); ?>
-    </p>
+    <?php the_post_navigation(); ?>
+
+    <?php 
+		// If comments are open or we have at least one comment, load up the comment template.
+		if (comments_open() || get_comments_number()) {
+            require get_template_directory().'/html/default/comments.php';
+		}
+    ?>
+ 
+    <?php //echo get_post_meta($post->ID, KDK_ID.'_key', true); ?>
 
     <?php else: ?>
 
