@@ -2,15 +2,22 @@
 
 A minimal starter theme for WordPress, inspired by Joomla's templating model.
 
-Instead of choking your theme folder with dozens of PHP and CSS files, everything is routed from the main theme file (index.php) and organized in subfolders, per entity type (e.g. post, category and so on).
+Instead of choking your theme folder with dozens of PHP and CSS files, everything is routed from the main theme file (index.php) and organized in logical subfolders, as well as override sub-template groups, per entity type (e.g. post, category and so on).
 
-This is work in progress, so please use with caution.
+The result is less file clutter, easier debugging and more flexible theme styling and section skinning (without requiring child themes etc.).
+
+This is clearly work in progress.
+
+Last Update: January 2020
 
 
 ## To Do
+- Define widget areas in a widgets.ini file
 - Secure includes
+- Add missing sub-templates (e.g. for attachment)
 - Enrich each sub-template with all available default fields
-- Add more widget positions
+- Allow switching to a different set of overrides (besides "default") - adjust "require" paths to be dynamic
+- Add options page for basic stuff like Google Analytics, custom code injected in the `<head>` or `<body>` elements
 - Integrate with Customizer
 
 
