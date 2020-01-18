@@ -33,43 +33,30 @@
         <!-- The body -->
         <?php if(have_posts()): ?>
         <section>
-            <header class="page-header">
+            <div class="page-header">
                 <?php
                     the_archive_title( '<h1 class="page-title">', '</h1>' );
                     the_archive_description( '<div class="taxonomy-description">', '</div>' );
                 ?>
-            </header>
+            </div>
 
-            <?php while(have_posts()): the_post(); ?>
-
-            <?php if('post' == get_post_type()): ?>
-            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-            <?php the_category(); ?>
-            <?php the_tags(); ?>
-            <?php if(is_single()): ?>
-            <?php the_content(); ?>
-            <?php else: ?>
-            <?php the_excerpt(); ?>
-            <?php endif; ?>
-            <p>
-                <?php echo get_post_meta($post->ID, KDK_ID.'_key', true); ?>
-            </p>
-            <?php endif; ?>
-
-            <?php if('page' == get_post_type()): ?>
-            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-            <?php the_category(); ?>
-            <?php the_tags(); ?>
-            <?php the_content(); ?>
-            <?php endif; ?>
-
-            <?php endwhile; ?>
-
+            <?php
+                while(have_posts()) {
+                    the_post();
+                    if(is_category()) {
+                        require get_template_directory().'/html/default/category.php';
+                    } else {
+                        require get_template_directory().'/html/default/'.get_post_type().'.php';        
+                    }
+                }
+            ?>
+            
             <?php the_posts_navigation(); ?>
-
         </section>
         <?php endif; ?>
 
+        <?php if(is_front_page()): ?>
+        <!-- Show the following only on the site's frontpage -->
         <?php //get_sidebar(); ?>
 
         <!-- Widget position "kdk_sidebar" -->
@@ -77,6 +64,7 @@
 
         <!-- Widget position "kdk_right" -->
         <?php kdk_widgets('kdk_right'); ?>
+        <?php endif; ?>
 
         <!-- The footer -->
         <?php wp_footer(); ?>

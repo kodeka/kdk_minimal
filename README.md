@@ -6,6 +6,16 @@ Instead of choking your theme folder with dozens of PHP and CSS files, everythin
 
 This is work in progress, so please use with caution.
 
+
+## To Do
+- Secure includes
+- Enrich each sub-template with all available default fields
+- Add more widget positions
+- Integrate with Customizer
+
+
+## License & Credits
+
 Licensed under the GNU/GPL license (https://www.gnu.org/copyleft/gpl.html).
 
 Copyright (c) 2018 - 2020 Kodeka OÜ. All rights reserved.
