@@ -57,10 +57,10 @@
                 <!-- Show the following only on the site's frontpage -->
                 <aside>
                     <!-- Widget position "kdk_sidebar" -->
-                    <?php kdk_widgets('kdk_sidebar'); ?>
+                    <?php kdk_widgets('kdk_sidebar_top'); ?>
     
                     <!-- Widget position "kdk_right" -->
-                    <?php kdk_widgets('kdk_right'); ?>
+                    <?php kdk_widgets('kdk_sidebar_bottom'); ?>
                 </aside>
                 <?php endif; ?>
             </div>
