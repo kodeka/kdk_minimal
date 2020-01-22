@@ -1,4 +1,4 @@
-# KDK Minimal (v1.0.0)
+# KDK Minimal (v1.0.0 / Jan 2020)
 
 A minimal starter theme for WordPress, inspired by Joomla's templating model.
 
@@ -7,8 +7,6 @@ Instead of choking your theme folder with dozens of PHP and CSS files, everythin
 The result is less file clutter, easier debugging and more flexible theme styling and section skinning (without requiring child themes etc.).
 
 This is clearly work in progress.
-
-Last Update: January 2020
 
 
 ## To Do
