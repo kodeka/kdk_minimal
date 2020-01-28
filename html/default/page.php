@@ -14,6 +14,10 @@
     <!-- Full page view -->
     <h3><?php the_title(); ?></h3>
 
+    <?php if(has_post_thumbnail()): ?>
+    <figure><?php the_post_thumbnail(); ?></figure>
+    <?php endif; ?>
+
     <?php the_content(); ?>
 
     <?php the_category(); ?>

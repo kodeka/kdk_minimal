@@ -23,7 +23,13 @@
         <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
             <?php the_title(); ?>
         </a>
-    
+
+        <?php if(has_post_thumbnail()): ?>
+        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+            <figure><?php the_post_thumbnail(); ?></figure>
+        </a>
+        <?php endif; ?>
+
         <?php the_excerpt(); ?>
     </article>
     <?php endwhile; ?>
